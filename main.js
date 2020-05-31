@@ -50,8 +50,21 @@ var list = new Vue({
             { name: "Krzysztof" },
             { name: "Paweł" },
             { name: "Konrad" },
-        ]
-    }
+        ],
+        names: {
+            name1: 'Krzysztof',
+            name2: 'Paweł',
+            name3: 'Konrad'
+        }
+    },
+    computed: {
+        usersList: function () {
+            var list = [];
+            for(x=0; x < this.users.length; x++) {
+                list.push(' ' + this.users[x].name);
+            }return 'Users registered: ' + list;
+        }
+}
 });
 
 
@@ -61,5 +74,11 @@ var app = new Vue({
         message: "Test paragraph is working!"
     },
     methods: {
+    },
+    computed: {
+        reversedMessage: function () {
+            return this.message.split('').reverse().join('');
+        },
+        
     }
 })

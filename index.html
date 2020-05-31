@@ -14,9 +14,11 @@
         <ul id="list" v-if="users.length">
             <h2>Users registered:</h2>
             <li v-for="user in users">
-            {{ user.name }}
+                {{ user.name }}
             </li>
+            <p>{{ usersList }}</p>
         </ul>
+        <p>{{ reversedMessage }}</p>
     </div>
 
 
