@@ -43,19 +43,29 @@ Vue.component( 'regist-form', {
         
     }
 })
-var list = new Vue({
-    el: "#list",
+var Form = new Vue({
+    el: "#form",
+    template: `
+        <form>
+            <input v-model="newName" type="text" placeholder="Type Your Name" @keyup.enter="addUser">
+            <p>New user is: {{ newName }}</p>
+            <input type="submit" v-bind:class="{ 'text-danger': newName.length === 0 }" :disabled="newName.length === 0" @click="addUser" value="Add User">
+            <h2>Users registered:</h2>
+            <ul v-if="users.length">
+                <li v-for="user in users">
+                    {{ user.name }}
+                </li>
+            </ul>
+            <p>{{ usersList }}</p>
+        </form>
+    `,
     data: {
         users: [
             { name: "Krzysztof" },
             { name: "Paweł" },
             { name: "Konrad" },
         ],
-        names: {
-            name1: 'Krzysztof',
-            name2: 'Paweł',
-            name3: 'Konrad'
-        }
+        newName: '',
     },
     computed: {
         usersList: function () {
@@ -63,15 +73,29 @@ var list = new Vue({
             for(x=0; x < this.users.length; x++) {
                 list.push(' ' + this.users[x].name);
             }return 'Users registered: ' + list;
+        },
+    },
+    methods: {
+        addUser: function () {
+            this.users.push({
+                name: this.newName
+            },);
+            this.newName = '';
         }
-}
+    }
 });
+
+
+
+
+
 
 
 var app = new Vue({
     el: '#app',
     data: {
-        message: "Test paragraph is working!"
+        message: "Test paragraph is working!",
+        newName: ''
     },
     methods: {
     },
@@ -80,5 +104,8 @@ var app = new Vue({
             return this.message.split('').reverse().join('');
         },
         
+    },
+    components: {
+        'NewUserForm': Form
     }
 })
