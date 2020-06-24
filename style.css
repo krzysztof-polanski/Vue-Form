@@ -9,3 +9,9 @@ body {
 .text-danger {
     color: red;
 }
+ul {
+    padding: 10px;
+}
+ol ul {
+    list-style-type: none;
+}

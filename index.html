@@ -14,9 +14,9 @@
         <p>{{ reversedMessage }}</p>
         <button-to-click></button-to-click>
         <blog-post title="A prop has been passed successfully!"></blog-post>
-        <register-form></register-form>
+        <register-form @add-user-new='updateList'></register-form>
+        <users-list1 v-if='users.length' :list='users'></users-list1>
     </div>
-    <!-- <div id="form" v-if="users.length"></div> -->
     
     
 
