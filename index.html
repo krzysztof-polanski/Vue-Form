@@ -4,19 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <title>Vue Form Homework</title>
 </head>
 <body>
     
     <div id="app">
         
-        <p>{{ message }}</p>
-        <p>{{ reversedMessage }}</p>
-        <button-to-click></button-to-click>
-        <blog-post title="A prop has been passed successfully!"></blog-post>
+        <!-- <button-to-click></button-to-click>
+        <blog-post title="A prop has been passed successfully!"></blog-post> -->
         <register-form @add-user-new='updateList'></register-form>
-        <users-list1 v-if='users.length' :list='users'></users-list1>
+        <users-list v-if='users.length' :list='users'></users-list>
+        
+        <h1>Poniżej jest z routerVue</h1>
+
+        <p>
+            <router-link to='/form'>Go to Form</router-link>
+            <router-link to='/list'>Go to List</router-link>
+        </p>
+        <router-view></router-view>
+
+
     </div>
+    <!-- <div id="rout">
+        <p>
+            <router-link to='/form'>Go to Form</router-link>
+            <router-link to='/list'>Go to List</router-link>
+        </p>
+        <router-view></router-view>
+    </div> -->
     
     
 
@@ -25,7 +42,7 @@
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
     <script src="main.js"></script>
 </body>
 </html>
