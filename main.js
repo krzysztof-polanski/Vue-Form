@@ -1,25 +1,9 @@
-// Vue.component('button-to-click', {
-//     data: function(){
-//         return{
-//             count: 0
-//         }
-//     },
-//     template: '<button @click="count++">{{ count }}</button>'
-// });
-
-// Vue.component('blog-post', {
-//     props: ['title'],
-//     template: '<h2>{{ title }}</h2>'
-// });
-
-
-// Vue.component('usersList1', {
 const UsersList = {
     template: 
         `
-        <div>
+        <div v-if='list.length'>
         <p>Registered users:</p>
-        <ol v-if="list.length">
+        <ol >
             <template v-for="user in list">
                 <li :key="user.id">
                     <ul>
@@ -118,7 +102,7 @@ const RegisterForm = {
     data: function() {
         return {
             newUser: {
-                newId: 4,
+                newId: 1,
                 newName: null,
                 newLastName: null,
                 newBirthday: null,
@@ -190,7 +174,6 @@ const RegisterForm = {
     }
 };
 
-
 // const Form = { template: '<div>form</div>' }
 // const List = { template: '<div>list</div>' }
 
@@ -200,44 +183,49 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    routes
+    routes: [
+        { path: '/form', component: RegisterForm },
+        { path: '/list', component: UsersList }
+    ]
 })
 
 const app = new Vue({
     router,
     // el: '#app',
-    components: {
-        'register-form': RegisterForm,
-        'users-list': UsersList
-    },
-    data:{
+    // components: {
+    //     'register-form': RegisterForm,
+    //     'users-list': UsersList
+    // },
+    data: function(){
         // message: "Test paragraph is working!",
-        users: [
-            {
-                id: 1,
-                name: "Krzysztof",
-                lastName: "Polański",
-                birthday: "",
-                sex: "",
-                interests: [],
-            },
-            {
-                id: 2,
-                name: "Paweł",
-                lastName: "Polański",
-                birthday: "",
-                sex: "",
-                interests: [],
-            },
-            {
-                id: 3,
-                name: "Konrad",
-                lastName: "Polański",
-                birthday: "",
-                sex: "",
-                interests: [],
-            },
-        ],
+        return {
+            users: [
+                // {
+                //     id: 1,
+                //     name: "Krzysztof",
+                //     lastName: "Polański",
+                //     birthday: "",
+                //     sex: "",
+                //     interests: [],
+                // },
+                // {
+                //     id: 2,
+                //     name: "Paweł",
+                //     lastName: "Polański",
+                //     birthday: "",
+                //     sex: "",
+                //     interests: [],
+                // },
+                // {
+                //     id: 3,
+                //     name: "Konrad",
+                //     lastName: "Polański",
+                //     birthday: "",
+                //     sex: "",
+                //     interests: [],
+                // },
+            ],
+        }
     },
     methods: {
         updateList(nU) {
@@ -250,7 +238,7 @@ const app = new Vue({
                 sex: nU.newSex,
                 interests: nU.newInterests,
             });
-        },
+        }
     }
     // computed: {
     //     reversedMessage: function() {

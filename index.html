@@ -14,16 +14,16 @@
         
         <!-- <button-to-click></button-to-click>
         <blog-post title="A prop has been passed successfully!"></blog-post> -->
-        <register-form @add-user-new='updateList'></register-form>
-        <users-list v-if='users.length' :list='users'></users-list>
+
         
-        <h1>Poniżej jest z routerVue</h1>
+        <!-- <register-form @add-user-new='updateList'></register-form>
+        <users-list v-if='users.length' :list='users'></users-list> -->
 
         <p>
-            <router-link to='/form'>Go to Form</router-link>
-            <router-link to='/list'>Go to List</router-link>
+            <h1><router-link to='/form'>Register</router-link></h1>
+            <h1><router-link to='/list'>List of users</router-link></h1>
         </p>
-        <router-view></router-view>
+        <router-view @add-user-new='updateList' :list='users'></router-view>
 
 
     </div>
