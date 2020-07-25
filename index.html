@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.jquery.min.js"></script>
+    <link href="https://cdn.rawgit.com/harvesthq/chosen/gh-pages/chosen.min.css" rel="stylesheet"/>
+
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+
     <title>Vue Form Homework</title>
 </head>
 <body>
@@ -19,10 +30,10 @@
         <!-- <register-form @add-user-new='updateList'></register-form>
         <users-list v-if='users.length' :list='users'></users-list> -->
 
-        <p>
-            <h1><router-link to='/form'>Register</router-link></h1>
-            <h1><router-link to='/list'>List of users</router-link></h1>
-        </p>
+        <div class="menu">
+            <router-link to='/form'><i class="fas fa-user-plus fa-9x"></i></router-link>
+            <router-link to='/list'><i class="fas fa-users fa-9x"></i></router-link>
+        </div>
         <router-view @add-user-new='updateList' :list='users'></router-view>
 
 
