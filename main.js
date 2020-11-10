@@ -27,42 +27,23 @@ const UsersList = {
         
         dateVisual(str){
 
-            isZero = function(n){
+            let monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            let arr = str.split("-");
+
+            for( j = 0; j < monthNames.length; j++) {
+                if (arr[1]==(j+1)) {
+                    console.log(arr[1] + "=" + (j+1));
+                    console.log(monthNames[j]);
+                    return (isZeroFirst(arr[2]) + " " + monthNames[j] + " " + arr[0]);
+                }
+            }
+
+            function isZeroFirst(n) {
                 if (n[0] == 0){
                     return n[1]
                 }else {
                     return n
                 }
-            }
-
-            console.log(str);
-            let arr = str.split("-")
-            if (str.split("-")[1] == "01"){
-                return isZero(arr[2]) + " January " + arr[0]
-            }else if (str.split("-")[1] == "02"){
-                return isZero(arr[2]) + " February " + arr[0]
-            }else if (str.split("-")[1] == "03"){
-                return isZero(arr[2]) + " March " + arr[0]
-            }else if (str.split("-")[1] == "04"){
-                return isZero(arr[2]) + " April " + arr[0]
-            }else if (str.split("-")[1] == "05"){
-                return isZero(arr[2]) + " May " + arr[0]
-            }else if (str.split("-")[1] == "06"){
-                return isZero(arr[2]) + " June " + arr[0]
-            }else if (str.split("-")[1] == "07"){
-                return isZero(arr[2]) + " July " + arr[0]
-            }else if (str.split("-")[1] == "08"){
-                return isZero(arr[2]) + " August " + arr[0]
-            }else if (str.split("-")[1] == "09"){
-                return isZero(arr[2]) + " September " + arr[0]
-            }else if (str.split("-")[1] == "10"){
-                return isZero(arr[2]) + " October " + arr[0]
-            }else if (str.split("-")[1] == "11"){
-                return isZero(arr[2]) + " November " + arr[0]
-            }else if (str.split("-")[1] == "12"){
-                return isZero(arr[2]) + " December " + arr[0]
-            }else {
-                return "date was not recognized"
             }
         },
         interestsVisual(arr){
@@ -214,7 +195,6 @@ const RegisterForm = {
                 this.addUserNew();
                 this.clearForm();
                 return true;
-                // this.errors = [];
             }this.errors = [];
             if (!this.newUser.newName) {
                 this.errors.push('We really need your name. Because of...reasons.');
@@ -235,7 +215,6 @@ const RegisterForm = {
                 this.errors.push('You do have some interests, don\'t you? Just pick already!');
             }
             e.preventDefault();
-            // this.clearForm();
         }
     }
 };
@@ -257,7 +236,6 @@ const router = new VueRouter({
 
 const app = new Vue({
     router,
-    // el: '#app',
     components: {
         'register-form': RegisterForm,
         'users-list': UsersList
@@ -265,37 +243,12 @@ const app = new Vue({
     data: function(){
         return {
             users: [
-                // {
-                //     id: 1,
-                //     name: "Krzysztof",
-                //     lastName: "Polański",
-                //     birthday: "",
-                //     sex: "",
-                //     interests: [],
-                // },
-                // {
-                //     id: 2,
-                //     name: "Paweł",
-                //     lastName: "Polański",
-                //     birthday: "",
-                //     sex: "",
-                //     interests: [],
-                // },
-                // {
-                //     id: 3,
-                //     name: "Konrad",
-                //     lastName: "Polański",
-                //     birthday: "",
-                //     sex: "",
-                //     interests: [],
-                // },
             ],
         }
     },
     props: ['users.newId'],
     methods: {
         updateList(nU) {
-            // this.users1.push(id);
             this.users.push({
                 id: nU.newId,
                 name: nU.newName,
@@ -307,23 +260,3 @@ const app = new Vue({
         }
     }
 }).$mount('#app')
-
-
-
-
-//można dodać jako ładniejszy wygląd rozwijanej listy zainteresowań:
-/* <select v-model="newUser.newInterests" name="newInterests" id="interests" multiple data-placeholder="Begin typing a name to filter..." class="chosen-select">
-                    <option value=""></option>
-                    <option value="something1">American Black Bear</option>
-                    <option value="something2">Asiatic Black Bear</option>
-                    <option value="something3">Brown Bear</option>
-                    <option value="something4">Giant Panda</option>
-                    <option value="something5">Sloth Bear</option>
-                    <option value="something6">Sun Bear</option>
-                    <option value="something7">Polar Bear</option>
-                    <option value="something8">Spectacled Bear</option>
-                </select>
-
-$(".chosen-select").chosen({
-    no_results_text: "Oops, nothing found!"
-  }) */
